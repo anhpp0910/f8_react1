@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Props</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+          Props
+
+          - React elements
+              - Sử dụng props giống như với attribute của thẻ HTML
+              - 2 props class, for => className, htmlFor
+              - Phải tuân theo quy ước có sẵn
+          - React components
+              - Sử dụng props giống như đối số cho Function
+              - Tự do đặt tên props
+                    - Đặt theo camelCase
+                    - Có thể bao gồm dấu gạch ngang
+          - Chú ý
+              - Prop "key" là prop đặc biệt
+              - Props cơ bản là đối số của Component
+                    => Props có thể là bất cứ kiểu dữ liệu gì              
+              - Sử dụng destructuring
+       -->
+    <div id="app"></div>
+    <script type="text/babel">
+      // PostItem.js
+      function PostItem({
+        image,
+        title,
+        description,
+        published,
+        callback = () => {},
+      }) {
+        callback();
+        return (
+          <div className="post-item">
+            <img src={image} />
+            <h2 className="post-title">{title}</h2>
+            <p className="post-desc">{description}</p>
+            <p className="post-published">{published}</p>
+          </div>
+        );
+      }
+
+      // App.js
+      function App() {
+        return (
+          <div id="wrapper">
+            <PostItem
+              title="C#(.NET) - Tương tác với file Excel"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmg2F-N0ETYM_fJsSR3HcGAz59iupdwk2RfkOAtDO_0Q&s"
+              description="Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện ..."
+              published="Một ngày trước | 5 phút đọc"
+              callback={() => {}}
+            />
+            <PostItem
+              title="HTML CSS"
+              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0sgNauVORPLUmy01SIhLTErWv5R292k2N_A&usqp=CAU"
+              description="Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện ..."
+              published="Hai ngày trước | 5 phút đọc"
+            />
+            <PostItem
+              title="Javascript cơ bản"
+              image="https://congtyvuanem.com/wp-content/uploads/2023/08/mem-nan-ni-5.jpg"
+              description="Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện ..."
+              published="Ba ngày trước | 5 phút đọc"
+            />
+          </div>
+        );
+      }
+
+      // index.js
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React.createElement</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <!-- 1. React.createElement() -> React element
+           2. So sánh với document.createElement() -> DOM element
+           3. Thay đổi: id, className, style, ...
+           4. Thêm: text, HTML
+           5. Tạo:
+                  <h1 title="Hello" class="heading">Hello guys!</h1>
+           6. Tạo:
+                  <ul>
+                      <li>Javascript</li>
+                      <li>ReactJS</li>
+                  </ul>
+            7. Tạo: 
+                  <div class="post-item">
+                      <h2 title="Học React tại F8">Học ReactJS</h2>
+                      <p>Học ReactJS từ cơ bản tới nâng cao</p>
+                  </div>
+    -->
+    <script>
+      // DOM
+      const ulDOM = document.createElement("ul");
+      const li1DOM = document.createElement("li");
+      const li2DOM = document.createElement("li");
+
+      ulDOM.id = "ul-id";
+      li1DOM.id = "li-1";
+      ulDOM.style = "color: red; font-size: 30px";
+      li1DOM.innerText = "Javascript";
+      li2DOM.innerText = "ReactJS";
+
+      ulDOM.appendChild(li1DOM);
+      ulDOM.appendChild(li2DOM);
+
+      document.body.appendChild(ulDOM);
+
+      // React -> React-DOM
+      // React.createElement(type, props, children, n)
+      const ulReact = React.createElement(
+        "ul",
+        {
+          id: "ul-id",
+          style: "color: red; font-size: 30px",
+        },
+        React.createElement(
+          "li",
+          {
+            id: "li-1",
+          },
+          "Javascript"
+        ),
+        React.createElement("li", null, "ReactJS")
+      );
+      console.log(ulReact);
+    </script>
+  </body>
+</html>

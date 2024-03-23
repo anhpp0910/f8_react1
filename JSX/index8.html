@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Href</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+      #wrapper {
+        width: 80%;
+        margin: 100px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .aTag,
+      .buttonTag {
+        padding: 20px;
+        color: blueviolet;
+        font-size: 30px;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        text-decoration: none;
+        background-color: whitesmoke;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      function Button({ title, href, onClick }) {
+        let Component = "button";
+        let props = {};
+        props.className = "buttonTag";
+        if (href) {
+          Component = "a";
+          props.className = "aTag";
+          props.href = href;
+        }
+        if (onClick) {
+          props.onClick = onClick;
+        }
+        console.log(props);
+        return <Component {...props}>{title}</Component>;
+      }
+
+      function App() {
+        return (
+          <div id="wrapper">
+            <Button
+              title="Click me!"
+              //   href="https://tuoitre.vn/"
+              onClick={() => console.log(Math.random())}
+            />
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
